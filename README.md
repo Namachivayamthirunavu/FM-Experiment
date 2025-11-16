@@ -1,19 +1,11 @@
 # FM
-
-EXP NO: 4	GENERATION AND DETECTION OF FM
-
-
-AIM:
+### EXP NO: 4	GENERATION AND DETECTION OF FM
+#### AIM:
 To write a program for Frequency Modulation and Demodulation using SCILAB and to observe and measure the frequency deviation and the modulation index of FM.
-
-
-EQUIPMENTS REQUIRED
-
+#### EQUIPMENTS REQUIRED
 •	Computer with i3 Processor
 •	SCI LAB
-
-THEORY:
-
+#### THEORY:
 Frequency modulation is a type of modulation in which the frequency of the high frequency (carrier) is varied in accordance with the instantaneous value of the modulating signal.
 FREQUENCY DEVIATION f and MODULATION INDEX m f :
 The frequency deviation f represents the maximum shift between the  modulatedsignal
@@ -22,10 +14,9 @@ frequency, over and under the frequency of the carrier.
 We define modulation index m f the ratio between f and the modulating frequency
 m= f / fm
 
-
 FREQUENCY MODULATION GENERATION:
 The circuits used to generate a frequency modulation must vary the frequency of a high frequency signal (carrier) as function of the amplitude of a low frequency signal (modulating signal). In practice there are two main methods used to generate FM.
-Algorithm
+#### Algorithm
 1.	Define Parameters:
 •	Fs: Sampling frequency.
 •	T: Duration of the signal.
@@ -45,12 +36,7 @@ Algorithm
 •	Low-pass Filtering: Applies a Butterworth low-pass filter to smooth the envelope and recover the original modulating signal.
 5.	Visualization:
 •	Plots the modulating signal, carrier signal, FM modulated signal, and demodulated signal for analysis.
-
-
-
-PROCEDURE
-
-
+#### PROCEDURE
 •	Refer Algorithms and write code for the experiment.
 •	Open SCILAB in System
 •	Type your code in New Editor
@@ -59,36 +45,58 @@ PROCEDURE
 •	If any Error, correct it in code and execute again
 Verify the generated waveform using Tabulation and Model Waveform
 
-MODEL GRAPH:
-
+#### MODEL GRAPH:
 <img width="512" height="365" alt="image" src="https://github.com/user-attachments/assets/acd787bd-5281-4f1b-802f-1aa39fac9189" />
 
+#### Program
+```
+// Parameters
+Am = 11.1;        // Message amplitude
+Fm = 500;         // Message frequency (Hz)
+B  = 6.3;         // Modulation index
+Ac = 22.2;          // Carrier amplitude
+Fc = 5000;        // Carrier frequency (Hz)
+Fs = 99000;       // Sampling frequency
+T  = 0:1/Fs:2/Fm; // Time vector (two cycles of message)
 
-Program
+// Message signal
+em = Am * cos(2*%pi*Fm*T);
+subplot(3,1,1);
+plot(T, em);
+xtitle("Message Signal");
+xgrid();
+// Carrier signal
+ec = Ac * cos(2*%pi*Fc*T);
+subplot(3,1,2);
+plot(T, ec);
+xtitle("Carrier Signal");
+xgrid();
+// FM signal
+efm = Ac * cos( (2*%pi*Fc*T) + (B * sin(2*%pi*Fm*T)) );
+subplot(3,1,3);
+plot(T, efm);
+xtitle("FM Signal");
+xgrid();
+```
 
+#### Output Waveform
+<img width="1137" height="1020" alt="Screenshot 2025-10-06 215544" src="https://github.com/user-attachments/assets/f006e4ee-90dd-44fd-ac8a-3172da684cde" />
 
-Output Waveform
+#### Tabulation
+<img width="838" height="634" alt="exp4-tab" src="https://github.com/user-attachments/assets/ca95b38e-f7b9-4af8-9749-f4ff7261001d" />
 
+#### Calculation 
+Modulation Index Practical	= 6.3
 
-
-Tabulation
-
-
-
-Calculation
-
-
-
-Frequency Deviation Practical = 
-
-Modulation Index Practical	= 
-
-Modulation Index Theoretical	=
-
-
-
-RESULT:
-
+Modulation Index Theoretical	
+```
+▲f  = Fmax – Fc
+    = 8064.5 – 5000
+    = 3064.5
+    
+ß = ▲f/Fm
+   = 3064.5 / 500
+   = 6.129
+   ```
+#### RESULT:
 Thus, the frequency modulation and demodulation is successfully done and the output is experimentally verified.
-
-
